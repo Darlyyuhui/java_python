@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.jf.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.jf.bean.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="Pass" property="pass" jdbcType="VARCHAR" />
+    <result column="sim" property="sim" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="same" property="same" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="login" property="login" jdbcType="VARCHAR" />
+    <result column="certificate" property="certificate" jdbcType="VARCHAR" />
+    <result column="section" property="section" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, Pass, sim, icon, idcard, money, same, sex, tel, token, login, certificate, 
+    section, title, createdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flower_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAll" resultMap="BaseResultMap"  >
+    select * from flower_user_info
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flower_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.jf.bean.UserInfo" >
+    insert into flower_user_info (id, name, Pass, 
+      sim, icon, idcard, 
+      money, same, sex, tel, 
+      token, login, certificate, 
+      section, title, createdate
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, 
+      #{sim,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{same,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{login,jdbcType=VARCHAR}, #{certificate,jdbcType=VARCHAR}, 
+      #{section,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{createdate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.jf.bean.UserInfo" >
+    insert into flower_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pass != null" >
+        Pass,
+      </if>
+      <if test="sim != null" >
+        sim,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="same != null" >
+        same,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="login != null" >
+        login,
+      </if>
+      <if test="certificate != null" >
+        certificate,
+      </if>
+      <if test="section != null" >
+        section,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="sim != null" >
+        #{sim,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="same != null" >
+        #{same,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="login != null" >
+        #{login,jdbcType=VARCHAR},
+      </if>
+      <if test="certificate != null" >
+        #{certificate,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.jf.bean.UserInfo" >
+    update flower_user_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        Pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="sim != null" >
+        sim = #{sim,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="same != null" >
+        same = #{same,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="login != null" >
+        login = #{login,jdbcType=VARCHAR},
+      </if>
+      <if test="certificate != null" >
+        certificate = #{certificate,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        section = #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.jf.bean.UserInfo" >
+    update flower_user_info
+    set name = #{name,jdbcType=VARCHAR},
+      Pass = #{pass,jdbcType=VARCHAR},
+      sim = #{sim,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      same = #{same,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      login = #{login,jdbcType=VARCHAR},
+      certificate = #{certificate,jdbcType=VARCHAR},
+      section = #{section,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
