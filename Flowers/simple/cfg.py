@@ -1,6 +1,6 @@
 ﻿
 web_name = "Darly"
-jquery = "http://ajax.useso.com/ajax/libs/jquery/2.1.1/jquery.min.js" #jquery2.0以上
+jquery = "../../static/simple/js/jquery/jquery-2.1.4.min.js" #jquery2.0以上
 page_size = 16
 
 #后台菜单，只支持3级

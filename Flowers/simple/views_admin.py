@@ -3,8 +3,6 @@ from . import commons
 from . import cfg
 import json
 import time
-import sys
-import os
 import platform
 import django
 from django.http import HttpResponse
@@ -106,7 +104,7 @@ def ajax_admin_list(request):
 		page_size = int(request.REQUEST.get("page_size"))
 
 	res_data = Admin.getList(page, page_size)
-	
+	print('获取的管理员'+res_data)
 	return commons.res_success("请求成功", res_data)
 
 def ajax_admin_add(request):
