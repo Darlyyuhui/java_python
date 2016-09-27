@@ -9,6 +9,6 @@ from django.conf.urls import url
 from flower import views
 
 urlpatterns = [
-    url(r'^f/$', views.index,name='index'),
+    url(r'^f/index$', views.index,name='index'),
     url(r'^b/$', views.index,name='index'),
 ]
