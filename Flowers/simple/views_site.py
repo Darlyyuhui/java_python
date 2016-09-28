@@ -1,5 +1,5 @@
-﻿
-from . import commons
+﻿from simple.tools import commons
+
 
 def index(request):
 

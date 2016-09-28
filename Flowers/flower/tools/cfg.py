@@ -1,5 +1,5 @@
 ﻿
-web_name = "Darly"
+web_name = "flower"
 jquery = "../../static/simple/js/jquery/jquery-2.1.4.min.js" #jquery2.0以上
 page_size = 16
 

@@ -1,17 +1,16 @@
-﻿
+﻿import io
 import os
-import sys
 import random
-import io
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.http import HttpResponse
-from PIL import Image, ImageDraw, ImageFont
+import string
 from math import ceil
-from . import cfg
 
-#验证码部分
-#修改自https://github.com/tianyu0915/DjangoCaptcha，以支持python3
+from PIL import Image, ImageDraw, ImageFont
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render
+
+from flower.tools import cfg
+
 current_path = os.path.normpath(os.path.dirname(__file__))
 
 class Captcha(object):
@@ -43,7 +42,7 @@ class Captcha(object):
         """
         #TODO  扩充单词表
 
-        file_path = os.path.join(current_path, 'words.list')
+        file_path = os.path.join(current_path, '../simple/words.list')
         f = open(file_path, 'r')
         return [line.replace('\n', '') for line in f.readlines()]
 
@@ -67,19 +66,23 @@ class Captcha(object):
 
         # 数字公式验证码
         def number():
-            m, n = 1, 50
-            x = random.randrange(m, n)
-            y = random.randrange(m, n)
 
-            r = random.randrange(0 ,2)
-            if r == 0:
-                code = "%s - %s = ?" % (x, y)
-                z = x - y
-            else:
-                code = "%s + %s = ?" % (x, y)
-                z = x + y
-            self._set_answer(z)
-            return code
+            vars = ''.join(random.sample(string.ascii_letters + string.digits, 6))
+            self._set_answer(vars)
+            return vars
+            # m, n = 1, 50
+            # x = random.randrange(m, n)
+            # y = random.randrange(m, n)
+            #
+            # r = random.randrange(0 ,2)
+            # if r == 0:
+            #     code = "%s - %s = ?" % (x, y)
+            #     z = x - y
+            # else:
+            #     code = "%s + %s = ?" % (x, y)
+            #     z = x + y
+            # self._set_answer(z)
+            # return code
 
         fun = eval(self.type.lower())
         return fun()
@@ -95,7 +98,7 @@ class Captcha(object):
         self.background = (random.randrange(230, 255), random.randrange(230, 255), random.randrange(230, 255))
 
         # font path
-        self.font_path = os.path.join(current_path, 'timesbi.ttf')
+        self.font_path = os.path.join(current_path, '../simple/timesbi.ttf')
         #self.font_path = os.path.join(current_path, 'Menlo.ttc')
 
         # clean

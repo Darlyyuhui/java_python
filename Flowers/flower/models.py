@@ -2,7 +2,22 @@ from django.db import models
 
 # Create your models here.
 from django.utils.encoding import python_2_unicode_compatible
+from flask import json
 
+
+def to_json(obj):
+    fields = []
+    for field in obj._meta.fields:
+        fields.append(field.name)
+    d = {}
+    for attr in fields:
+        val = getattr(obj, attr)
+
+        # 如果是model类型，就要再一次执行model转json
+        if isinstance(val, models.Model):
+            val = json.loads(to_json(val))
+        d[attr] = val
+    return json.dumps(d)
 
 @python_2_unicode_compatible
 class User_Info(models.Model):
@@ -25,6 +40,8 @@ class User_Info(models.Model):
     title = models.CharField(u'说明',max_length=255,default="")
     createdate = models.CharField(u'注册日期',max_length=255,default="")
 
+    def toJSON(self):
+        return to_json(self)
 
     class Meta:
         verbose_name = '用户分组'

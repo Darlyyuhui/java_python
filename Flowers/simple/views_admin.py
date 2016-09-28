@@ -1,16 +1,17 @@
-﻿
-from . import commons
-from . import cfg
-import json
-import time
+﻿import json
 import platform
+import time
+
 import django
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+
+from simple.tools import cfg
+from simple.tools import commons
 from .models import Admin
 from .models import ArtSingle
-from .models import DataClass
 from .models import Data
+from .models import DataClass
+
 
 def index(request):
 	#如果已登录就直接跳到管理界面
@@ -58,9 +59,7 @@ def ajax_login(request):
 		
 		try:
 
-			print("用户信息："+name+"-----"+pwd)
 			admin = Admin.objects.get(name = name, pwd = pwd)
-			print("用户信息：--" + admin.name)
 			admin_jsonstr = admin.toJSON()
 			admin = json.loads(admin_jsonstr)
 			

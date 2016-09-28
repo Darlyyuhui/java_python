@@ -1,9 +1,9 @@
-﻿
-from django.db import models
-import json
+﻿import json
 import time
 
-from simple import commons
+from django.db import models
+
+from simple.tools import commons
 
 
 def to_json(obj):

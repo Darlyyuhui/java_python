@@ -15,8 +15,8 @@ $(function() {
 		var code = $(".Captcha").val();
 		console.log("用户信息"+name+"--"+hex_md5(pwd)+"--"+code);
 		$.ajax({
-			type: "post",
-			url: "ajax_login?name=" + escape(name) + "&pwd=" + pwd + "&code=" + code,
+			type: "get",
+			url: "login?name=" + escape(name) + "&pwd=" + pwd + "&code=" + code,
 			dataType: "json",
 			
 			beforeSend: function() {
@@ -24,7 +24,7 @@ $(function() {
 			},
 			success: function(data) {
 				if(data.code == 0)
-					location.href = "admin"; //登录成功				
+					location.href = ""; //登录成功
 				else {
 					alert(data.desc);
 					
